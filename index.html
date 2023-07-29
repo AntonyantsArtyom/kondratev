@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/png" href="Content/favicon.png" />
+      <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+   </head>
+   <body>
+      <div class="MainBody">
+         <div class="MenuBody">
+            <div class="FirstSettingDevice">
+               <div class="OneStageSetting Tab" id="OneStageSetting">
+                  <div class="SettingsInfoTitle">
+                     <span> Подключение к Wi-Fi </span>
+                  </div>
+                  <div class="WifiSelecting ScrollingMenu"></div>
+                  <div class="BtnMenu">
+                     <button id="RefreshWifiList" class="BtnBlue" type="button" name="button">Обновить</button>
+                  </div>
+                  <div id="FirstConfigurationComplete" class="InDevelopClass">
+                     <div id="InDevelopBlock">
+                        <div id="InDevelopTitle" class="CompleteConfigTitle">Первоначальная конфигурация пройдена</div>
+                        <div id="InDevelopIcon">
+                           <svg
+                              width="59"
+                              height="44"
+                              viewBox="0 0 59 44"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                           >
+                              <path
+                                 d="M0.75 23.772L20.4405 43.5L58.25 5.72808L52.8218 0.375L20.4405 32.7186L6.103 18.3812L0.75 23.772Z"
+                                 fill="#2C98F0"
+                              />
+                           </svg>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="TwoStageSetting" class="Tab">
+                  <div class="SettingsInfoTitle">
+                     <div id="BackToOneStageSetting">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path
+                              d="M14.791 7.00499H3.621L8.501 2.12499C8.891 1.73499 8.891 1.09499 8.501 0.704994C8.314 0.517994 8.061 0.412994 7.796 0.412994C7.532 0.412994 7.278 0.517994 7.091 0.704994L0.501 7.29499C0.111 7.68499 0.111 8.31499 0.501 8.70499L7.091 15.295C7.481 15.685 8.111 15.685 8.501 15.295C8.891 14.905 8.891 14.275 8.501 13.885L3.621 9.00499H14.791C15.341 9.00499 15.791 8.55499 15.791 8.00499C15.791 7.45499 15.341 7.00499 14.791 7.00499Z"
+                              fill="#3A83F1"
+                           />
+                        </svg>
+                     </div>
+                     <span> Подключение к Wi-Fi </span>
+                  </div>
+                  <div class="PassworWifiArea ScrollingMenu">
+                     <label> Пароль </label>
+                     <div class="Password">
+                        <input type="password" id="PasswordFirstSetting" placeholder="Введите пароль" />
+                        <div id="ShowPass">
+                           <div id="NotShowIcon">
+                              <svg
+                                 width="18"
+                                 height="16"
+                                 viewBox="0 0 18 16"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                              >
+                                 <path
+                                    d="M8.90405 5.05679H9.01919C9.68444 5.05679 10.2601 5.307 10.7463 5.80741C11.2324 6.30782 11.4755 6.90041 11.4755 7.58519V7.74321L8.90405 5.05679ZM5.37313 5.72839C5.0661 6.36049 4.91258 6.97942 4.91258 7.58519C4.91258 8.74403 5.30917 9.74486 6.10235 10.5877C6.92111 11.4041 7.89339 11.8123 9.01919 11.8123C9.60768 11.8123 10.209 11.6543 10.823 11.3383L9.5565 10.0346C9.35181 10.0872 9.17271 10.1136 9.01919 10.1136C8.35394 10.1136 7.77825 9.86337 7.29211 9.36296C6.80597 8.86255 6.5629 8.26996 6.5629 7.58519C6.5629 7.42716 6.58849 7.2428 6.63966 7.0321L5.37313 5.72839ZM0.84435 1.06667L1.8806 0L16.3881 14.9333L15.3518 16C15.2239 15.8683 14.8145 15.4601 14.1237 14.7753C13.4584 14.0905 12.9467 13.5638 12.5885 13.1951C11.4883 13.6691 10.2985 13.9062 9.01919 13.9062C6.99787 13.9062 5.16844 13.3267 3.53092 12.1679C1.89339 11.0091 0.716418 9.48148 0 7.58519C0.639659 5.95226 1.66311 4.55638 3.07036 3.39753C2.76333 3.08148 2.32836 2.63374 1.76546 2.05432C1.22814 1.4749 0.921109 1.14568 0.84435 1.06667ZM9.01919 3.35802C8.50746 3.35802 8.00853 3.46337 7.52239 3.67407L5.75693 1.85679C6.7548 1.46173 7.84222 1.2642 9.01919 1.2642C11.0405 1.2642 12.8571 1.84362 14.4691 3.00247C16.1066 4.16132 17.2836 5.68889 18 7.58519C17.3859 9.13909 16.452 10.4691 15.1983 11.5753L12.8188 9.12593C13.0235 8.62551 13.1258 8.11193 13.1258 7.58519C13.1258 6.42634 12.7164 5.43868 11.8977 4.62222C11.1045 3.77942 10.145 3.35802 9.01919 3.35802Z"
+                                    fill="#666666"
+                                 />
+                              </svg>
+                           </div>
+                           <div id="ShowIcon">
+                              <svg
+                                 width="18"
+                                 height="12"
+                                 viewBox="0 0 18 12"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                              >
+                                 <path
+                                    d="M7.2766 4.3125C7.7617 3.8375 8.33617 3.6 9 3.6C9.66383 3.6 10.2383 3.8375 10.7234 4.3125C11.2085 4.7875 11.4511 5.35 11.4511 6C11.4511 6.65 11.2085 7.2125 10.7234 7.6875C10.2383 8.1625 9.66383 8.4 9 8.4C8.33617 8.4 7.7617 8.1625 7.2766 7.6875C6.79149 7.2125 6.54894 6.65 6.54894 6C6.54894 5.35 6.79149 4.7875 7.2766 4.3125ZM6.08936 8.85C6.90638 9.625 7.8766 10.0125 9 10.0125C10.1234 10.0125 11.0809 9.625 11.8723 8.85C12.6894 8.05 13.0979 7.1 13.0979 6C13.0979 4.9 12.6894 3.9625 11.8723 3.1875C11.0809 2.3875 10.1234 1.9875 9 1.9875C7.8766 1.9875 6.90638 2.3875 6.08936 3.1875C5.29787 3.9625 4.90213 4.9 4.90213 6C4.90213 7.1 5.29787 8.05 6.08936 8.85ZM3.5234 1.65C5.15745 0.55 6.98298 0 9 0C11.017 0 12.8426 0.55 14.4766 1.65C16.1106 2.75 17.2851 4.2 18 6C17.2851 7.8 16.1106 9.25 14.4766 10.35C12.8426 11.45 11.017 12 9 12C6.98298 12 5.15745 11.45 3.5234 10.35C1.88936 9.25 0.714894 7.8 0 6C0.714894 4.2 1.88936 2.75 3.5234 1.65Z"
+                                    fill="white"
+                                 />
+                              </svg>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="PassworWifiAreaBottomLine"></div>
+                  </div>
+                  <div class="BtnMenu">
+                     <button id="WifiConnectBtn" class="BtnBlue" type="button" name="button">Подключить</button>
+                  </div>
+               </div>
+               <div id="ThreeStageSetting" class="Tab ConditionerPage">
+                  <div class="SettingsInfoTitle MainDisplayIcon">
+                     <span> Марка кондиционера </span>
+                  </div>
+                  <div class="SensorSelector ScrollingMenu">
+                     <div class="SelectingBlock" id="ModeOfWork" style="display: none">Режим работы</div>
+                  </div>
+                  <div class="BtnMenu">
+                     <button id="BackToWifiStage" class="BtnBlue" type="button" name="button">Назад</button>
+                     <button id="CompleteSettingBtn" class="BtnBlue" type="button" name="button">Дальше</button>
+                  </div>
+               </div>
+               <div class="Tab" id="ModeWorkDevice">
+                  <div class="SettingsInfoTitle MainDisplayIcon">
+                     <span> Режим работы </span>
+                  </div>
+                  <div class="SensorSelector ScrollingMenu" id="ConditionerModeWork">
+                     <div class="SelectingBlock SelectingModeWork" id="MqttModeWork">
+                        MQTT
+                        <div class="SelectedIcon">
+                           <svg
+                              width="20"
+                              height="15"
+                              viewBox="0 0 20 15"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                           >
+                              <path
+                                 d="M0 8.13808L6.84888 15L20 1.86194L18.1119 0L6.84888 11.2499L1.86191 6.26303L0 8.13808Z"
+                                 fill="#2C98F0"
+                              />
+                           </svg>
+                        </div>
+                     </div>
+                     <div class="SelectingBlock SelectingModeWork" id="AliceModeWork">
+                        Яндекс.Алиса
+                        <div class="SelectedIcon">
+                           <svg
+                              width="20"
+                              height="15"
+                              viewBox="0 0 20 15"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                           >
+                              <path
+                                 d="M0 8.13808L6.84888 15L20 1.86194L18.1119 0L6.84888 11.2499L1.86191 6.26303L0 8.13808Z"
+                                 fill="#2C98F0"
+                              />
+                           </svg>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="BtnMenu">
+                     <button id="BackConditioner" class="BtnBlue" type="button" name="button">Назад</button>
+                     <button id="CompleteSettingBtnTwo" class="BtnBlue" type="button" name="button">Готово</button>
+                  </div>
+               </div>
+               <div class="LoaderHandler">
+                  <div class="Loader"></div>
+                  <div class="TimerLoader"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="ModelSetting" style="display: none">
+         <div class="SettingsInfoTitle"><span>Модель кондиционера</span></div>
+         <div class="ScrollingMenu ConditionerModelScrollingMenu"></div>
+         <div class="BtnMenu">
+            <button class="BtnBlue HideModelSettingMenu" class="BtnBlue">Назад</button>
+            <button class="BtnBlue FinishModelSettingConditioner">Дальше</button>
+         </div>
+         <div class="LoaderHandler_2" style="z-index: 100; display: none">
+            <div class="Loader"></div>
+            <div class="TimerLoader"></div>
+         </div>
+      </div>
+      <div class="shadowBlock" style="display: none"></div>
+      <script>
+         window.PanelMenu = 0
+         window.configActive = 1
+      </script>
+      <script src="Content/scriptMenuEsp.js"></script>
+      <style>
+         @font-face {
+            font-family: "NotoSans-Regular";
+            src: url(Content/NotoSans.woff2) format("woff2");
+         }
+      </style>
+   </body>
+</html>
