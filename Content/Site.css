@@ -104,7 +104,37 @@ body {
    padding: 0px 10px;
    color: #ffffff;
 }
-
+.Mark {
+   height: auto !important;
+   max-height: none !important;
+   font-family: NotoSans-Regular;
+   margin: 10px;
+   border-radius: 4px;
+   background: #00000014;
+   display: grid;
+   grid-template-columns: 100px 1fr 20px;
+   grid-template-rows: max-content max-content;
+   grid-template-areas:
+      "name        ...........         icon"
+      "description description  description";
+   padding: 0px 10px;
+   color: #ffffff;
+   padding-top: 10px;
+}
+.Mark__name {
+   grid-area: name;
+}
+.Mark__icon {
+   grid-area: icon;
+}
+.Mark > .Mark__description {
+   display: block;
+}
+.Mark__description {
+   grid-area: description;
+   display: none;
+   font-size: 14px;
+}
 .WifiBlock {
 }
 

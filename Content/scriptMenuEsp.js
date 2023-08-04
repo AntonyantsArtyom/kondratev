@@ -1,3 +1,5 @@
+const testHost = "192.168.43.230"
+
 const conditionerModels = {
    daikin: ["Default"],
    midea: ["GRGRGRGRGRG", "1", "2", "3", "4", "5", "6", "7", "trrr"],
@@ -5,12 +7,20 @@ const conditionerModels = {
    aux: ["VeryBig", "Big"],
    mitsubishi: ["MODEL", "MODEL2"],
    brend12: ["MODEL"],
+   "hl hel": [],
+}
+const brendTexts = {
+   daikin:
+      "на данный момент мы продаем модели MODEL1 и MODEL2, мы закупаем модели только у сертифицированных продавцов",
+   aux: "HELLO WORLD",
+   brend12: "1111111111111111111111111111",
+   "hl hel": "2222",
 }
 
 for (brend in conditionerModels) {
    const text = `<div class="SelectingBlock SelectedConditioner" id="${brend}">
-   <div class="BrandConditioner">${brend[0].toUpperCase() + brend.slice(1)}</div>
-   <div class="SelectedIcon">
+   <div class="BrandConditioner Mark__name">${brend[0].toUpperCase() + brend.slice(1)}</div>
+   <div class="SelectedIcon Mark__icon">
       <svg
          width="20"
          height="15"
@@ -24,6 +34,7 @@ for (brend in conditionerModels) {
          />
       </svg>
    </div>
+   <p class="Mark__description"}>${brendTexts[brend] != undefined ? brendTexts[brend] : ""}</p>
 </div>`
    document.querySelector(".SensorSelector").insertAdjacentHTML("beforeend", text)
 }
@@ -624,7 +635,7 @@ function SelectResistance(Item) {
                }
             } else CurrentSocket.Socket.send(JSON.stringify({ sensor_model_id: SensorIdCollection[Item.id] }))
             SetLoader(10, function () {
-               location.host = location.host
+               testHost = testHost
             })
          }
       }
@@ -707,6 +718,13 @@ SelectedConditioner.forEach((item) =>
 function SelectConditionerBlock(Item) {
    let checkedSelectedIcon = getComputedStyle(Item.children[1]).display
    if (checkedSelectedIcon === "none" || checkedSelectedIcon === "") {
+      console.log("выбор бренда")
+      for (const item of document.querySelectorAll(".SelectedConditioner")) {
+         item.classList.remove("Mark")
+      }
+      if (brendTexts[Item.id] != undefined) {
+         Item.classList.add("Mark")
+      }
       document
          .getElementsByClassName("ConditionerPage")[0]
          .querySelectorAll(".SelectedIcon")
@@ -723,7 +741,9 @@ function SelectConditionerBlock(Item) {
          )
       }
    } else {
+      Item.classList.remove("Mark")
       Item.children[1].style.display = "none"
+      console.log("отмена выбора бренда")
       configConditioner.config.air_brand = null
    }
 }
@@ -895,7 +915,7 @@ function ChangeTempDynamic() {
 window.onload = function () {
    ArraySocket.push(
       (ArraySocketItem = {
-         Socket: new WebSocket("ws://" + location.host + "/ws"),
+         Socket: new WebSocket("ws://" + testHost + "/ws"),
          config: null,
          config_1ch: null,
          config_2ch: null,
@@ -1084,7 +1104,7 @@ function WebSocketOpen(SocketItemDevice) {
                } else if (MessageJson.update_status === 100) {
                   SwitchElem(LytkoUpdateBar, LytkoUpdateInformation)
                   SetLoader(5, function () {
-                     location.host = location.host
+                     testHost = testHost
                   })
                }
             }
@@ -1126,7 +1146,7 @@ function WebSocketOpen(SocketItemDevice) {
          }
       }
       if ("refresh" in MessageJson) {
-         location.host = location.host
+         testHost = testHost
       }
       if ("config_1ch" in MessageJson) {
          for (let i = 0; ArraySocket.length > i; i++) {
@@ -1659,7 +1679,7 @@ function ConnectInnerSensor() {
          })
       )
       SetLoader(5, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
 }
@@ -1847,7 +1867,7 @@ function InsertMqtt() {
    SwitchMqttComlete.onclick = function () {
       this.parentElement.parentElement.parentElement.style.display = "none"
       SetLoader(5, function () {
-         location.host = location.host
+         testHost = testHost
       })
       CurrentSocket.Socket.send(
          JSON.stringify({
@@ -1873,7 +1893,7 @@ function InsertMqtt() {
                })
             )
             SetLoader(5, function () {
-               location.host = location.host
+               testHost = testHost
             })
          }
       }, 2000)
@@ -1881,7 +1901,7 @@ function InsertMqtt() {
    DisconnectMQTTBtn.onclick = function () {
       CurrentSocket.Socket.send(JSON.stringify({ mqtt_disconnect: 1 }))
       SetLoader(5, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
    GetMQTTData.onclick = function () {
@@ -2059,7 +2079,7 @@ function PairHk() {
       )
       let SetTimeoutHomekit = function () {
          SetLoader(5, function () {
-            location.host = location.host
+            testHost = testHost
          })
       }
       setTimeout(SetTimeoutHomekit, 2000)
@@ -2074,7 +2094,7 @@ function PairHk() {
          })
       )
       SetLoader(5, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
 }
@@ -2103,7 +2123,7 @@ function ZigBeeSet() {
          })
       )
       SetLoader(30, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
    ClearZigBee.onclick = function () {
@@ -2113,7 +2133,7 @@ function ZigBeeSet() {
          })
       )
       SetLoader(4, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
    if ((CurrentSocket.zigbee != null) & (CurrentSocket.zigbee != undefined) & (CurrentSocket.zigbee != "{}")) {
@@ -2132,7 +2152,7 @@ function ZigBeeSet() {
          })
       )
       SetLoader(30, function () {
-         location.host = location.host
+         testHost = testHost
       })
    }
    if (!CurrentSocket.active_channel) {
