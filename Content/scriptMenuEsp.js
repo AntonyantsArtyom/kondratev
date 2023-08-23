@@ -1,20 +1,43 @@
-const testHost = "192.168.43.230"
+const testHost = "192.168.91.31"
 
 const conditionerModels = {
-   daikin: ["Default"],
+   daikin: ["Default", "HELLO"],
    midea: ["GRGRGRGRGRG", "1", "2", "3", "4", "5", "6", "7", "trrr"],
    haier1: ["Big"],
    aux: ["VeryBig", "Big"],
    mitsubishi: ["MODEL", "MODEL2"],
    brend12: ["MODEL"],
-   "hl hel": [],
+   "hl hel": ["1"],
 }
 const brendTexts = {
    daikin:
       "на данный момент мы продаем модели MODEL1 и MODEL2, мы закупаем модели только у сертифицированных продавцов",
-   aux: "HELLO WORLD",
-   brend12: "1111111111111111111111111111",
+   aux: "HELLO world world world world",
+   brend12: "Привет мир",
    "hl hel": "2222",
+   midea: "Какой-то текст про midea",
+}
+
+const modelTexts = {
+   "hl hel": {
+      1: "NTRTRGRTGHRTHRHRRHRH",
+   },
+   daikin: {
+      Default: "текст про модель",
+   },
+   brend12: {
+      MODEL: "Привет мир мир",
+   },
+   midea: {
+      1: "MIDEA MIDEA MIDEA",
+      GRGRGRGRGRG: "midea222222",
+   },
+   aux: {
+      Big: "BIG BIG BIG",
+   },
+   mitsubishi: {
+      MODEL: "35352235252525",
+   },
 }
 
 for (brend in conditionerModels) {
@@ -2817,23 +2840,32 @@ function showModelMenu() {
             .querySelector(".ConditionerModelScrollingMenu")
             .insertAdjacentHTML(
                "beforeend",
-               `<div class="SelectingBlock ConditionerModel" data-model="${model}"><span>${model}</span></div>`
+               `<div class="SelectingBlock ConditionerModel Model" data-model="${model}"><span>${model}</span></div>`
             )
       })
       document.querySelectorAll(".ConditionerModel").forEach((modelBlock) => {
          modelBlock.onclick = (event) => {
+            document.querySelectorAll(".ConditionerModel").forEach((block) => block.classList.remove("ModelSelected"))
             configConditioner.config.air_model = event.currentTarget.dataset.model
-            console.log(configConditioner.config)
+            let textOfModel = undefined
+            try {
+               textOfModel = modelTexts[configConditioner.config.air_brand][event.currentTarget.dataset.model]
+            } catch (error) {}
             document.querySelectorAll(".ConditionerModel > .ConditionerSelectedIcon").forEach((icon) => {
                icon.remove()
             })
+            if (textOfModel) {
+               event.currentTarget.classList.add("ModelSelected")
+            }
+            document.querySelectorAll(".ConditionerModel > p").forEach((text) => text.remove())
             event.currentTarget.insertAdjacentHTML(
                "beforeend",
                `<div class="SelectedIcon ConditionerSelectedIcon" style="display: block;">
             <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 8.13808L6.84888 15L20 1.86194L18.1119 0L6.84888 11.2499L1.86191 6.26303L0 8.13808Z" fill="#2C98F0"></path>
             </svg>
-            </div>`
+            </div>
+            ${textOfModel ? `<p>${textOfModel}</p>` : `<p style="display:none"></p>`}`
             )
          }
       })

@@ -137,7 +137,33 @@ body {
 }
 .WifiBlock {
 }
+.Model {
+   display: grid;
+   grid-template-columns: 100px 1fr 20px;
+   grid-template-rows: 1fr 0px;
+   height: auto !important;
+   min-height: 56px;
 
+   grid-template-areas:
+      "name        ...........         icon"
+      "description description  description";
+}
+.ModelSelected {
+   grid-template-rows: max-content max-content;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+
+.Model > span {
+   grid-area: name;
+}
+.Model > p {
+   font-size: 14px;
+   grid-area: description;
+}
+.Model > div {
+   grid-area: icon;
+}
 .WifiName {
    font-family: NotoSans-Regular;
    font-style: normal;
