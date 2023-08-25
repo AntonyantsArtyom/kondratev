@@ -1,4 +1,4 @@
-const testHost = "192.168.91.31"
+const testHost = location.host
 
 const conditionerModels = {
    daikin: ["Default", "HELLO"],
