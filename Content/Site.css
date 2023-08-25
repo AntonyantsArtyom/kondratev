@@ -140,6 +140,7 @@ body {
 .Model {
    display: grid;
    grid-template-columns: 100px 1fr 20px;
+   max-height: none !important;
    grid-template-rows: 1fr 0px;
    height: auto !important;
    min-height: 56px;
@@ -147,6 +148,11 @@ body {
    grid-template-areas:
       "name        ...........         icon"
       "description description  description";
+}
+.ModelWithLittleText {
+   grid-template-rows: max-content max-content;
+   padding-bottom: 10px;
+   padding-top: 10px;
 }
 .ModelSelected {
    grid-template-rows: max-content max-content;

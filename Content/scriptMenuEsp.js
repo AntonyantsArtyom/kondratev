@@ -1,4 +1,4 @@
-const testHost = location.host
+const testHost = "192.168.91.31"
 
 const conditionerModels = {
    daikin: ["Default", "HELLO"],
@@ -23,7 +23,9 @@ const modelTexts = {
       1: "NTRTRGRTGHRTHRHRRHRH",
    },
    daikin: {
-      Default: "текст про модель",
+      Default:
+         "большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст большой текст",
+      HELLO: "текст про модель - большая большая большая версия",
    },
    brend12: {
       MODEL: "Привет мир мир",
@@ -31,12 +33,37 @@ const modelTexts = {
    midea: {
       1: "MIDEA MIDEA MIDEA",
       GRGRGRGRGRG: "midea222222",
+      2: "большо   большо24242424242424242й большой большой большой",
    },
    aux: {
       Big: "BIG BIG BIG",
    },
    mitsubishi: {
       MODEL: "35352235252525",
+   },
+}
+
+const modelSmallTexts = {
+   "hl hel": {
+      1: "NTRTRGRTGHRTHRHRRHRH - маленькая версия",
+   },
+   daikin: {
+      Default: "маленькая версия маленькая версия маленькая версия",
+      HELLO: "текст про модель - маленькая версия",
+   },
+   brend12: {
+      MODEL: "Привет мир мир - маленькая версия",
+   },
+   midea: {
+      1: "MIDEA MIDEA MIDEA - маленькая версия",
+      GRGRGRGRGRG: "midea222222 - маленькая версия",
+      2: "малень3242342424242кий",
+   },
+   aux: {
+      Big: "BIG BIG BIG - маленькая версия",
+   },
+   mitsubishi: {
+      MODEL: "35352235252525 - маленькая версия",
    },
 }
 
@@ -2844,6 +2871,12 @@ function showModelMenu() {
             )
       })
       document.querySelectorAll(".ConditionerModel").forEach((modelBlock) => {
+         let smallTextOfModel = undefined
+         try {
+            smallTextOfModel = modelSmallTexts[configConditioner.config.air_brand][modelBlock.dataset.model]
+            smallTextOfModel && modelBlock.classList.add("ModelWithLittleText")
+            modelBlock.insertAdjacentHTML("beforeend", smallTextOfModel ? `<p>${smallTextOfModel}</p>` : ``)
+         } catch (error) {}
          modelBlock.onclick = (event) => {
             document.querySelectorAll(".ConditionerModel").forEach((block) => block.classList.remove("ModelSelected"))
             configConditioner.config.air_model = event.currentTarget.dataset.model
@@ -2855,9 +2888,15 @@ function showModelMenu() {
                icon.remove()
             })
             if (textOfModel) {
+               event.currentTarget.classList.remove("ModelWithLittleText")
                event.currentTarget.classList.add("ModelSelected")
             }
-            document.querySelectorAll(".ConditionerModel > p").forEach((text) => text.remove())
+            document.querySelectorAll(".ConditionerModel > p").forEach((text) => {
+               text.remove()
+            })
+            event.currentTarget.childNodes.forEach((node) => {
+               node.tagName == "P" && node.remove()
+            })
             event.currentTarget.insertAdjacentHTML(
                "beforeend",
                `<div class="SelectedIcon ConditionerSelectedIcon" style="display: block;">
@@ -2867,6 +2906,16 @@ function showModelMenu() {
             </div>
             ${textOfModel ? `<p>${textOfModel}</p>` : `<p style="display:none"></p>`}`
             )
+            document.querySelectorAll(".ConditionerModel").forEach((element) => {
+               if (element != event.currentTarget) {
+                  let smallTextOfModel = undefined
+                  try {
+                     smallTextOfModel = modelSmallTexts[configConditioner.config.air_brand][element.dataset.model]
+                     smallTextOfModel && element.classList.add("ModelWithLittleText")
+                     element.insertAdjacentHTML("beforeend", smallTextOfModel ? `<p>${smallTextOfModel}</p>` : ``)
+                  } catch (error) {}
+               }
+            })
          }
       })
    }
